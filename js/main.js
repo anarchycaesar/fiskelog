@@ -74,5 +74,10 @@ document.querySelector('[data-skip-link]')?.addEventListener('click', (e) => {
 
 window.addEventListener('hashchange', () => render());
 // Data ændret (fangst gemt/slettet) → tegn den aktuelle side igen, men bliv hvor du er.
-document.addEventListener(CHANGE_EVENT, () => render({ keepScroll: true }));
+// Sider med onDataChange (Hjem) opdaterer sig selv, så kort, position og valgt sted ikke nulstilles.
+document.addEventListener(CHANGE_EVENT, () => {
+  const page = ROUTES[parseRoute() || DEFAULT_ROUTE];
+  if (page.onDataChange) page.onDataChange();
+  else render({ keepScroll: true });
+});
 render();

@@ -13,7 +13,7 @@ import { toast } from './toast.js';
 
 const FIELDS = ['fishId', 'cm', 'kg', 'place', 'date', 'note'];
 
-export function CatchForm({ fishId = '' } = {}) {
+export function CatchForm({ fishId = '', place = '' } = {}) {
   const today = todayIso();
   const options = [...allFish]
     .sort((a, b) => a.name.localeCompare(b.name, 'da'))
@@ -25,7 +25,7 @@ export function CatchForm({ fishId = '' } = {}) {
       ${TextField({ id: 'catch-cm', label: 'Længde (cm)', placeholder: 'fx 45', attrs: 'inputmode="decimal" autocomplete="off" required' })}
       ${TextField({ id: 'catch-kg', label: 'Vægt (kg)', placeholder: 'valgfri, fx 1,4', attrs: 'inputmode="decimal" autocomplete="off"' })}
     </div>
-    ${TextField({ id: 'catch-place', label: 'Sted', placeholder: 'fx Furesøen', attrs: 'list="catch-places" maxlength="80" autocomplete="off"' })}
+    ${TextField({ id: 'catch-place', label: 'Sted', value: place, placeholder: 'fx Furesøen', attrs: 'list="catch-places" maxlength="80" autocomplete="off"' })}
     <datalist id="catch-places">${spots.map((s) => `<option value="${esc(s.name)}"></option>`).join('')}</datalist>
     ${TextField({ id: 'catch-date', label: 'Dato', type: 'date', value: today, attrs: `max="${today}" required` })}
     ${TextAreaField({ id: 'catch-note', label: 'Note', placeholder: 'valgfri – fx agn, vejr eller stemning', attrs: 'maxlength="300"' })}

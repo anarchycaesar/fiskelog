@@ -37,6 +37,19 @@ export const guide = {
       gedde: ['Gummifisk og wobler i rolige partier', 'Spinner ved vegetation'],
     },
   },
+  susaaen: {
+    notes: [
+      'Sjællands længste å løber gennem Næstved og ud i Karrebæk Fjord. Ved Gerdrup, få kilometer fra Næstved, er der dybe huller og store fisk.',
+      'Flere foreninger har fiskeretten i Susåen. Du skal have et fiskekort eller være medlem, før du fisker. Spørg lokalt, hvor du må være.',
+      'Søg dybe huller, bagvande og kanter. Gedden står ofte stille i de rolige partier.',
+      'Der sejler kanoer og kajakker på åen om sommeren. Pas på dem, og pas på glatte bredder.',
+    ],
+    bait: {
+      gedde: ['Gummifisk (shad) 12-18 cm', 'Wobler eller jerkbait', 'Brug altid stålforfang'],
+      aborre: ['Små spinnere og mini-jigs', 'Regnorm på fast bund', 'Små gummifisk (5-8 cm)'],
+      skalle: ['Majs, maddiker eller brød på flåd', 'Lille krog og tynd line'],
+    },
+  },
   limfjorden: {
     notes: [
       'Vind og strøm betyder meget – fisk gerne ved skiftende strøm.',
@@ -95,3 +108,39 @@ export function baitFor(fishId) {
   for (const g of Object.values(guide)) if (g.bait?.[fishId]) return g.bait[fishId];
   return [];
 }
+
+/** Enkel startgrej pr. art, skrevet til nybegyndere. UDKAST. */
+export const starterGear = {
+  aborre: { rod: 'Let spinnestang, ca. 2-2,4 m (5-25 g)', line: 'Monofil 0,20 mm', lure: 'Små spinnere, mini-jigs eller regnorm' },
+  gedde: { rod: 'Middel spinnestang, ca. 2,4-2,7 m (10-40 g)', line: 'Flettet line 0,15-0,20 mm', lure: 'Gummifisk eller wobler, og stålforfang (gedden bider line over)' },
+  skalle: { rod: 'Let fladfiskestang eller teleskopstang', line: 'Monofil 0,16 mm med flåd', lure: 'Krog str. 14-16 med majs, maddiker eller brød' },
+  orred: { rod: 'Let spinnestang, ca. 2-2,4 m (3-15 g)', line: 'Monofil 0,20 mm', lure: 'Små spinnere eller blink' },
+  havorred: { rod: 'Kystspinnestang, ca. 2,7-3 m (10-40 g)', line: 'Flettet line 0,15-0,20 mm', lure: 'Kystblink 15-25 g' },
+  torsk: { rod: 'Kraftig pilkestang eller kyststang', line: 'Flettet line 0,25-0,30 mm', lure: 'Pilk 100-200 g eller jig' },
+  hornfisk: { rod: 'Let kyststang', line: 'Monofil 0,25 mm', lure: 'Små blink eller flue, ofte om foråret' },
+  karpe: { rod: 'Karpestang eller kraftig fladfiskestang', line: 'Monofil 0,30 mm', lure: 'Majs, boilies eller brød på bundløb' },
+  sandart: { rod: 'Middel spinnestang', line: 'Flettet line 0,15 mm', lure: 'Små gummifisk (8-12 cm)' },
+};
+
+/** Det alle begyndere skal have: fælles ekstra udstyr. */
+export const commonGear = ['Fisketegn (se reglerne)', 'Net eller grebstang til at lande fisken', 'Tang til at fjerne krogen', 'Målebånd, så du kan tjekke mindstemål'];
+
+/** Regler, kvalitetssikret mod Fiskeristyrelsen og fisketegn.dk. Tjek altid de gældende regler. */
+export const rules = [
+  'Fisketegn: Alle fra 18 år og til folkepensionsalderen skal have et fisketegn for at lystfiske. Det kan købes som dagstegn, ugetegn eller årstegn.',
+  'Fiskekort: I mange søer og åer skal du også have et fiskekort fra den lokale forening eller lodsejeren. Put & take-søer er undtaget fisketegnet.',
+  'Mindstemål og fredningstider: De gælder for mange arter. Tjek dem, før du tager en fisk med hjem.',
+];
+
+export const ruleLinks = [
+  { label: 'Køb fisketegn', url: 'https://www.fisketegn.dk' },
+  { label: 'Regler og fredningstider', url: 'https://fiskeristyrelsen.dk/lyst-og-fritidsfiskeri/' },
+];
+
+export const steps = [
+  'Køb fisketegn og tjek, om vandet kræver fiskekort.',
+  'Tag startgrejet med, og kom tidligt om morgenen eller sidst på dagen. Det er ofte bedst.',
+  'Find en plads med adgang til vandet. Vær stille, og kast mod kanter, sivbælter og dybdeskift.',
+  'Behandl fisken forsigtigt. Tjek mindstemålet, og sæt for små eller fredede fisk ud igen.',
+  'Registrér din fangst her i appen.',
+];

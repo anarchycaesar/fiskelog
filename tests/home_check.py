@@ -9,12 +9,12 @@ OSM={"elements":[
  {"type":"node","id":4,"lat":55.6300,"lon":12.7000,"tags":{"name":"Saltholm","place":"island"}},
  {"type":"way","id":5,"center":{"lat":55.8100,"lon":12.4200},"tags":{"name":"Lille Pøl","natural":"water","water":"pond"}},
 ]}
-async def run(b,label,vp,geo=True,overpass="ok",maps="mock"):
-    ctx=await b.new_context(viewport=vp,**({"geolocation":{"latitude":55.80,"longitude":12.41},"permissions":["geolocation"]} if geo else {}))
+async def run(b,label,vp,geo=True,overpass="ok",maps="mock",at=(55.80,12.41),osm=None):
+    ctx=await b.new_context(viewport=vp,**({"geolocation":{"latitude":at[0],"longitude":at[1]},"permissions":["geolocation"]} if geo else {}))
     pg=await ctx.new_page(); errs=[]
     pg.on("pageerror",lambda e:errs.append(str(e)))
     async def ov(r):
-        if overpass=="ok": await r.fulfill(body=json.dumps(OSM),content_type="application/json")
+        if overpass=="ok": await r.fulfill(body=json.dumps(OSM if osm is None else osm),content_type="application/json")
         else: await r.fulfill(status=500,body="x")
     await pg.route("**/overpass-api.de/**",ov)
     async def mp(r):
@@ -30,6 +30,12 @@ async def run(b,label,vp,geo=True,overpass="ok",maps="mock"):
     if maps=="abort":
         ck(await pg.is_visible("#mini-fallback") and not await pg.is_visible("#mini-gmap"),L("Maps fejler: reservekort"))
         ck(len(chips)>=4,L("Maps fejler: chips virker stadig"))
+    elif label=="susaaen":
+        ck(chips[0].startswith("Susåen ·"),L(f"Susåen er nærmeste vand: {chips[:2]}"))
+        t=await pg.inner_text("#spot-guide")
+        ck("dit nærmeste vand" in t.lower() and "Susåen" in t and "Gerdrup" in t and "Skalle" in t and "Gedde" in t,L("Susåen: kendt guide med arter og noter"))
+        ck("Appen kender ikke" not in t and "stålforfang" in t,L("Susåen: kendt sted, stålforfang nævnt"))
+        await pg.screenshot(path=f"{OUT}/home-susaaen.png",full_page=True)
     elif geo and overpass=="ok":
         ck("Vande inden for" in st,L("status ok"))
         ck(chips[0].startswith("Furesøen ·"),L(f"nærmeste først: {chips[:4]}"))
@@ -40,6 +46,18 @@ async def run(b,label,vp,geo=True,overpass="ok",maps="mock"):
         ck(await pg.is_visible("#mini-gmap") and not await pg.is_visible("#mini-fallback"),L("Google Maps vises"))
         ck(await pg.locator("[data-mock-marker='Din position']").count()==1,L("din position vist på kortet"))
         ck(await pg.locator("[data-mock-marker='Lyngby Sø']").count()==1,L("pin for vand i nærheden"))
+        t=await pg.inner_text("#spot-guide")
+        ck("dit nærmeste vand" in t.lower() and "Furesøen" in t,L("nærmeste vand er valgt som standard"))
+        ck(all(x in t for x in ["Det skal du bruge","Det skal du vide først","Sådan gør du","Stang:"]),L("nybegynderguide: grej, regler, trin"))
+        href=await pg.get_attribute("a:has-text('Vis vej')","href")
+        ck(href.startswith("https://www.google.com/maps/dir/?api=1&destination=55.799"),L("Vis vej linker til Google Maps"))
+        ck("Din samling: 0 af" in await pg.inner_text(".collection-link"),L("samlingslinje vises"))
+        await pg.click("[data-new-catch]"); await pg.wait_for_timeout(250)
+        ck(await pg.input_value("#catch-place")=="Furesøen",L("fangstformular har stedet forudfyldt"))
+        await pg.select_option("#catch-fishId","aborre"); await pg.fill("#catch-cm","25")
+        await pg.click("button[type=submit]"); await pg.wait_for_timeout(350)
+        ck("Din samling: 1 af" in await pg.inner_text(".collection-link"),L("samling opdateres uden at siden nulstilles"))
+        ck(await pg.is_visible("#mini-gmap") and "dit nærmeste vand" in (await pg.inner_text("#spot-guide")).lower(),L("kort og valgt sted bevares efter fangst"))
         await pg.click("[data-chip-value='osm:way1']"); await pg.wait_for_timeout(150)
         t=await pg.inner_text("#spot-guide")
         ck("Lyngby Sø" in t and "Appen kender ikke" in t and "Aborre" in t and "Bait" in t,L("ukendt vand: generel guide"))
@@ -65,6 +83,7 @@ async def main():
         b=await p.chromium.launch(executable_path="/usr/bin/google-chrome",args=["--no-sandbox"])
         await run(b,"mobile",{"width":390,"height":844})
         await run(b,"desktop",{"width":1440,"height":900})
+        await run(b,"susaaen",{"width":390,"height":844},at=(55.2300,11.7600),osm={"elements":[]})
         await run(b,"denied",{"width":390,"height":844},geo=False)
         await run(b,"osmfail",{"width":390,"height":844},overpass="fail")
         await run(b,"nomaps",{"width":390,"height":844},maps="abort")

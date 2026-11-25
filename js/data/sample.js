@@ -45,6 +45,7 @@ export const spots = [
   { id: 'gudenaaen', name: 'Gudenåen',    area: 'Midtjylland',           type: 'Å',    lat: 56.1690, lng: 9.5450, x: 128, y: 158, species: ['orred', 'gedde'] },
   { id: 'limfjorden',name: 'Limfjorden',  area: 'Nordjylland',           type: 'Kyst', lat: 56.9700, lng: 9.2500, x: 112, y: 92,  species: ['havorred', 'torsk'] },
   { id: 'vejlefjord',name: 'Vejle Fjord', area: 'Østjylland',            type: 'Kyst', lat: 55.7010, lng: 9.6200, x: 172, y: 212, species: ['havorred'] },
+  { id: 'susaaen',    name: 'Susåen',      area: 'Næstved, Sydsjælland',  type: 'Å',    lat: 55.2377, lng: 11.7513, x: 304, y: 202, species: ['gedde', 'aborre', 'skalle'] },
   { id: 'oeresund',  name: 'Øresund',     area: 'Kysten nord for København', type: 'Kyst', lat: 55.8550, lng: 12.6000, x: 350, y: 168, species: ['torsk', 'havorred'] },
 ];
 
