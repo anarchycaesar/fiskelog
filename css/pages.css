@@ -1,0 +1,176 @@
+/* ==========================================================================
+   Sidespecifik styling – kun det, der ikke er en fælles komponent
+   ========================================================================== */
+
+.inline-icon { display: inline-block; vertical-align: -2px; margin-right: 4px; }
+
+/* --- Hjem --- */
+.home-collection__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--s-s); margin-top: var(--s-s); flex-wrap: wrap; }
+
+.ai-promo { display: flex; flex-direction: column; align-items: flex-start; gap: var(--s-xs); padding: var(--s-l); }
+.ai-promo::after {
+  content: ""; position: absolute; z-index: -1; right: -60px; bottom: -80px; width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(191, 223, 240, 0.25), transparent 70%);
+}
+.ai-promo__icon { width: 40px; height: 40px; border-radius: var(--r-s); display: grid; place-items: center; background: rgba(255, 255, 255, 0.14); margin-bottom: 4px; }
+.ai-promo__text { color: var(--text-on-dark-muted); font-size: var(--fs-meta); margin-bottom: var(--s-xs); max-width: 36ch; }
+
+/* --- Personlig rekord --- */
+.record-card { display: flex; flex-direction: column; gap: var(--s-s); background: linear-gradient(180deg, var(--c-ice) 0%, var(--surface) 62%); }
+.record-card__art { padding: var(--s-xs) var(--s-m) 0; margin-bottom: calc(var(--s-m) * -1); }
+.record-card__art svg { width: 100%; max-width: 420px; height: auto; margin: 0 auto; filter: drop-shadow(0 8px 10px rgba(11, 43, 70, 0.16)); }
+.record-card__info { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--s-m); }
+.record-card__stats { margin: 0; text-align: right; font-weight: var(--fw-semibold); line-height: 1.45; }
+.record-card__stats dd { margin: 0; }
+
+/* --- Fisk: detaljemodal --- */
+.fish-detail__art { background: linear-gradient(180deg, var(--c-ice), var(--bg)); border-radius: var(--r-l); padding: var(--s-l) var(--s-m); }
+.fish-detail__art svg { width: 100%; height: auto; filter: drop-shadow(0 10px 12px rgba(11, 43, 70, 0.18)); }
+.fish-detail__art.is-locked svg { filter: grayscale(1) opacity(0.45); }
+.badge-detail { display: flex; flex-direction: column; align-items: center; gap: var(--s-m); padding: var(--s-xs) 0; }
+
+/* --- Fangster --- */
+.catch-history { display: flex; flex-direction: column; gap: var(--s-l); }
+.catch-month .t-h2 { font-size: var(--fs-h3); }
+@media (min-width: 1100px) {
+  .catch-history { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+}
+
+/* --- Kort --- */
+.dk-map { position: relative; aspect-ratio: 400 / 360; }
+.dk-map__svg { width: 100%; height: 100%; }
+.dk-map__pins { position: absolute; inset: 0; }
+.dk-pin {
+  position: absolute; transform: translate(-50%, -100%);
+  display: flex; flex-direction: column; align-items: center;
+  color: var(--c-navy);
+}
+.dk-pin svg {
+  width: 34px; height: 34px; padding: 7px; border-radius: 50%;
+  background: var(--surface); box-shadow: var(--shadow-m); border: 2px solid var(--c-navy);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.dk-pin::after { content: ""; width: 2px; height: 8px; background: var(--c-navy); border-radius: 1px; }
+.dk-pin__label {
+  position: absolute; bottom: calc(100% + 4px); white-space: nowrap;
+  padding: 3px 8px; border-radius: var(--r-pill); background: var(--c-deep); color: #fff;
+  font-size: var(--fs-micro); font-weight: var(--fw-semibold);
+  opacity: 0; transform: translateY(4px); pointer-events: none;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.dk-pin:hover .dk-pin__label, .dk-pin:focus-visible .dk-pin__label, .dk-pin[aria-pressed="true"] .dk-pin__label { opacity: 1; transform: none; }
+.dk-pin[aria-pressed="true"] svg { background: var(--c-navy); color: #fff; transform: scale(1.12); }
+.dk-pin:hover svg { transform: scale(1.08); }
+
+.spot-detail { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: var(--s-m); align-items: start; }
+.spot-detail__img { aspect-ratio: 4 / 3; border-radius: var(--r-m); overflow: hidden; }
+.spot-detail__img svg { width: 100%; height: 100%; }
+.spot-row { width: 100%; text-align: left; transition: background var(--dur) var(--ease); }
+.spot-row:hover { background: var(--c-offwhite); }
+.spot-row[aria-pressed="true"] { background: var(--c-ice); }
+.spot-row[aria-pressed="true"] .row__art--square { background: var(--c-navy); color: #fff; }
+.spot-row .row__art--square { color: var(--c-navy); width: 44px; height: 44px; }
+.spot-row .row__art--square svg { width: 22px; height: 22px; }
+
+/* --- Grej --- */
+.gear-tile { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; text-align: left; width: 100%; }
+.gear-tile__art { width: 60px; height: 60px; margin-bottom: var(--s-xs); padding: 6px; border-radius: var(--r-m); background: var(--c-ice); }
+.gear-tile__art svg { width: 100%; height: 100%; }
+
+/* --- Profil --- */
+.profile-dev { display: flex; justify-content: flex-start; }
+
+/* --- AI-rådgiver --- */
+.ai-context__head { display: flex; align-items: center; gap: var(--s-s); }
+.ai-context__img { width: 72px; height: 52px; border-radius: var(--r-s); overflow: hidden; flex-shrink: 0; }
+.ai-context__img svg { width: 100%; height: 100%; }
+.ai-context__head > div { flex: 1; }
+.ai-context__pin { color: var(--c-sea); }
+.ai-context__conditions { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-xs); margin-top: var(--s-m); }
+.ai-context__conditions .pill { justify-content: center; padding: 9px 8px; background: var(--c-offwhite); border: 1px solid var(--line); font-size: var(--fs-meta); }
+
+.chat-bubble {
+  align-self: flex-end; max-width: 88%;
+  padding: var(--s-m) var(--s-l); border-radius: var(--r-l) var(--r-l) 6px var(--r-l);
+  background: var(--c-water); color: var(--c-deep); font-weight: var(--fw-medium);
+}
+.ai-heading { display: flex; align-items: center; gap: var(--s-xs); margin-bottom: var(--s-xs); }
+.ai-heading svg { color: var(--c-sea); }
+.rec-list { display: flex; flex-direction: column; margin-top: var(--s-s); }
+.rec-row { display: flex; align-items: center; gap: var(--s-s); padding: var(--s-s) 0; }
+.rec-row + .rec-row { border-top: 1px solid var(--line); }
+.rec-row__check { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--c-success); color: #fff; flex-shrink: 0; }
+.tips { display: flex; flex-direction: column; gap: var(--s-xs); padding-left: 1.1em; list-style: disc; font-size: var(--fs-meta); color: var(--text); }
+.tips li::marker { color: var(--c-sea); }
+
+/* --- Designsystem --- */
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--s-s); }
+.swatch { display: flex; flex-direction: column; gap: 2px; padding: var(--s-s); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-m); box-shadow: var(--shadow-xs); }
+.swatch__chip { height: 56px; border-radius: var(--r-s); border: 1px solid var(--line); margin-bottom: var(--s-xs); }
+.type-scale { display: flex; flex-direction: column; gap: var(--s-m); }
+.type-scale > div { display: flex; flex-direction: column; gap: 2px; padding-bottom: var(--s-m); border-bottom: 1px solid var(--line); }
+.type-scale > div:last-child { border-bottom: 0; padding-bottom: 0; }
+.icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: var(--s-m) var(--s-xs); }
+.icon-grid__item { display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--c-navy); }
+.spacing-scale { display: flex; flex-wrap: wrap; gap: var(--s-l); align-items: flex-end; }
+.spacing-scale > div { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.spacing-scale__box { display: block; background: var(--c-water); border-radius: 4px; }
+
+/* --- Google Maps --- */
+.map-card { position: relative; }
+.gmap { width: 100%; aspect-ratio: 400 / 360; min-height: 320px; background: var(--c-ice); }
+.gmap[hidden], .dk-map[hidden] { display: none; }
+.gmap-pin { cursor: pointer; line-height: 0; filter: drop-shadow(0 3px 4px rgba(11, 43, 70, 0.3)); }
+.map-loading {
+  position: absolute; left: 50%; bottom: var(--s-m); transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--r-pill);
+  background: var(--c-deep); color: #fff; font-size: var(--fs-micro); font-weight: var(--fw-semibold);
+  box-shadow: var(--shadow-m);
+}
+@media (min-width: 1100px) { .gmap { min-height: 460px; } }
+
+/* Hjem: stedsguide */
+.guide-head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--s-m); }
+.guide-list { margin: 0; padding-left: 1.2em; list-style: disc; display: grid; gap: var(--s-xs); }
+.guide-fish-list { list-style: none; margin: 0; padding: 0; }
+.guide-fish { display: flex; gap: var(--s-m); padding: var(--s-m); }
+.guide-fish + .guide-fish { border-top: 1px solid var(--c-line, rgba(0,0,0,.08)); }
+.guide-fish__art { flex: 0 0 88px; display: flex; align-items: center; }
+.guide-fish__art svg { width: 100%; height: auto; }
+.guide-fish__body { min-width: 0; display: grid; gap: var(--s-xs); }
+.guide-fish__latin { font-style: italic; opacity: .7; margin: 0; }
+.guide-fish__label { margin: var(--s-xs) 0 0; font-weight: 600; }
+.stack-s { display: grid; gap: var(--s-s, 8px); }
+
+/* Hjem: lille kort (ca. 1/5 skærmhøjde, hele fladen er trykbar) */
+.mini-map { position: relative; display: block; height: clamp(300px, 52vh, 560px); border-radius: var(--r-l, 20px); overflow: hidden;
+  background: #E3F0F8; border: 1px solid rgba(0,0,0,.06); box-shadow: var(--shadow-card, 0 2px 8px rgba(10,40,70,.08)); -webkit-tap-highlight-color: transparent; }
+.mini-map .dk-map__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.mini-map__pins { position: absolute; inset: 0; }
+.mini-pin { position: absolute; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--c-sea, #3A93BF); border: 2px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
+.mini-pin.is-selected { width: 18px; height: 18px; margin: -9px 0 0 -9px; background: var(--c-navy); box-shadow: 0 0 0 5px rgba(20,60,100,.2); }
+.mini-map__cta { position: absolute; right: 12px; top: 12px; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: 999px;
+  background: var(--c-navy); color: #fff; font-weight: 600; font-size: .9rem; }
+
+.guide-hint { margin: 0; }
+
+/* Hjem: aktivt kort (Google Maps over reservekort), position og status */
+.mini-map__gmap, .mini-map__fallback { position: absolute; inset: 0; }
+.mini-map__gmap[hidden], .mini-map__fallback[hidden] { display: none; }
+.mini-map__link { position: absolute; inset: 0; z-index: 2; display: block; border-radius: inherit; }
+.mini-map__link:focus-visible { outline: 3px solid var(--c-sea, #3A93BF); outline-offset: -3px; }
+.geo-line { display: flex; align-items: center; justify-content: space-between; gap: var(--s-s, 8px); flex-wrap: wrap; }
+.geo-line p { margin: 0; flex: 1 1 200px; }
+.geo-line [hidden] { display: none; }
+.stack-s > * { min-width: 0; }
+
+/* Reservekort på Hjem: vandet fylder hele fladen, pins sidder i kortets egne koordinater */
+.mini-map .dk-map__svg { overflow: visible; }
+.mini-dot { fill: var(--c-sea, #3A93BF); stroke: #fff; stroke-width: 3; }
+.mini-dot.is-selected { fill: var(--c-navy); stroke-width: 4; }
+
+/* Stednavne ligger oven på kortets nederste kant */
+.mini-map__chips { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding: 28px 12px 12px;
+  background: linear-gradient(to top, rgba(14,52,86,.28), rgba(14,52,86,0)); pointer-events: none; }
+.mini-map__chips .chips { pointer-events: auto; }
+.mini-map__chips .chip { box-shadow: 0 2px 6px rgba(10,40,70,.18); }

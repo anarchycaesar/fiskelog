@@ -1,0 +1,100 @@
+/* ==========================================================================
+   FiskeLog – Design tokens
+   Designretning: NORDIC BLUE × DEEP WATER
+   Alle farver, mål og typografi samlet ét sted. Komponenter bruger KUN tokens.
+   ========================================================================== */
+
+@font-face { font-family: "Inter"; src: url("../assets/fonts/Inter-Regular.woff") format("woff");  font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../assets/fonts/Inter-Medium.woff") format("woff");   font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../assets/fonts/Inter-SemiBold.woff") format("woff"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("../assets/fonts/Inter-Bold.woff") format("woff");     font-weight: 700; font-style: normal; font-display: swap; }
+
+:root {
+  /* --- Farvepalette (moodboard) --- */
+  --c-offwhite: #F7F9FC;  /* Primær baggrund */
+  --c-ice:      #E8F2FA;  /* Sekundære baggrunde */
+  --c-water:    #BFDFF0;  /* Lyse UI-elementer */
+  --c-sea:      #3A8FB9;  /* Aktive elementer */
+  --c-navy:     #164B70;  /* Primære knapper og navigation */
+  --c-deep:     #0B2B46;  /* Overskrifter og kontrast */
+
+  /* Støttefarver (bruges sparsomt) */
+  --c-white:    #FFFFFF;
+  --c-success:  #2E9E6B;
+  --c-success-bg: #E3F4EB;
+  --c-gold:     #C99A1E;
+  --c-gold-bg:  #FBF3DC;
+  --c-danger:   #B3402F;
+
+  /* --- Semantiske farver --- */
+  --bg:            var(--c-offwhite);
+  --bg-subtle:     var(--c-ice);
+  --surface:       var(--c-white);
+  --text:          var(--c-deep);
+  --text-muted:    #4E6A80;
+  --text-soft:     #6F889B;
+  --text-on-dark:  #FFFFFF;
+  --text-on-dark-muted: rgba(255, 255, 255, 0.78);
+  --line:          rgba(22, 75, 112, 0.10);
+  --line-strong:   rgba(22, 75, 112, 0.18);
+  --accent:        var(--c-sea);
+  --primary:       var(--c-navy);
+
+  --grad-deep: linear-gradient(165deg, #1B5A85 0%, var(--c-navy) 38%, var(--c-deep) 100%);
+  --grad-sidebar: linear-gradient(180deg, var(--c-navy) 0%, var(--c-deep) 100%);
+
+  /* --- Spacing (4 / 8 / 12 / 16 / 24 / 32) --- */
+  --s-xxs: 4px;
+  --s-xs:  8px;
+  --s-s:   12px;
+  --s-m:   16px;
+  --s-l:   24px;
+  --s-xl:  32px;
+  --s-xxl: 48px;
+
+  /* --- Radier --- */
+  --r-xs: 8px;
+  --r-s:  12px;
+  --r-m:  16px;
+  --r-l:  20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* --- Skygger (diskrete) --- */
+  --shadow-xs: 0 1px 2px rgba(11, 43, 70, 0.06);
+  --shadow-s:  0 1px 2px rgba(11, 43, 70, 0.05), 0 4px 14px rgba(11, 43, 70, 0.06);
+  --shadow-m:  0 2px 4px rgba(11, 43, 70, 0.05), 0 10px 28px rgba(11, 43, 70, 0.10);
+  --shadow-fab: 0 6px 18px rgba(22, 75, 112, 0.35);
+
+  /* --- Typografi --- */
+  --font: "Inter", "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-h1:   clamp(28px, 2.2vw + 20px, 32px);
+  --fs-h2:   clamp(20px, 1vw + 16px, 22px);
+  --fs-h3:   17px;
+  --fs-body: 15px;
+  --fs-meta: 13px;
+  --fs-micro: 12px;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --lh-tight: 1.2;
+  --lh-body: 1.5;
+
+  /* --- Layout --- */
+  --gutter: var(--s-m);
+  --content-max: 1080px;
+  --nav-h: 72px;
+  --sidebar-w: 256px;
+
+  /* --- Bevægelse --- */
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: 180ms;
+}
+
+@media (min-width: 600px) {
+  :root { --gutter: var(--s-l); }
+}
+@media (min-width: 960px) {
+  :root { --gutter: var(--s-xl); }
+}
