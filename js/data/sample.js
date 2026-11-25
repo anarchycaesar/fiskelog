@@ -26,7 +26,7 @@ export const classes = [
 /** Udvalg af arter til fiskesamlingen. Rekorder og "fanget" udledes af brugerens fangster (store.js). */
 export const fish = [
   { id: 'aborre', name: 'Aborre', latin: 'Perca fluviatilis', water: 'Ferskvand', art: { depth: 21, back: '#3E5A2A', body: '#86A043', belly: '#EBE4B2', fin: '#E0672A', dorsalColor: '#56653F', pattern: 'bars', bars: 6, dorsal: [56, 122], dorsalH: 0.7 } },
-  { id: 'gedde', name: 'Gedde', latin: 'Esox lucius', water: 'Ferskvand', art: { depth: 12, back: '#3D5528', body: '#7A8C40', belly: '#E6E2B8', fin: '#A08E42', pattern: 'spots', dorsal: [124, 152], anal: [122, 150], snout: 0.35, tail: 1.4 } },
+  { id: 'gedde', name: 'Gedde', latin: 'Esox lucius', water: 'Ferskvand', photo: 'img/fisk/gedde.jpg', art: { depth: 12, back: '#3D5528', body: '#7A8C40', belly: '#E6E2B8', fin: '#A08E42', pattern: 'spots', dorsal: [124, 152], anal: [122, 150], snout: 0.35, tail: 1.4 } },
   { id: 'havorred', name: 'Havørred', latin: 'Salmo trutta trutta', water: 'Saltvand', art: { depth: 15.5, back: '#4D6577', body: '#BCC9D2', belly: '#F4F6F7', fin: '#7F95A3', pattern: 'dots', dorsal: [72, 104] } },
   { id: 'orred', name: 'Bækørred', latin: 'Salmo trutta fario', water: 'Ferskvand', art: { depth: 15, back: '#5C5A3A', body: '#B39A5A', belly: '#F1E6C8', fin: '#8C7A50', pattern: 'dots', red: true, dorsal: [72, 104] } },
   { id: 'sandart', name: 'Sandart', latin: 'Sander lucioperca', water: 'Brakvand', art: { depth: 14, back: '#4D5A4A', body: '#9AA48B', belly: '#ECEBDD', fin: '#7E8A72', pattern: 'bars', bars: 7, dorsal: [52, 108] } },

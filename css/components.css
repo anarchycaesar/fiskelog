@@ -110,7 +110,7 @@
 .fish-card__latin { font-size: var(--fs-meta); font-style: italic; color: var(--text-muted); }
 .fish-card__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s-xs); }
 .fish-card__chev { color: var(--text-soft); }
-.fish-card.is-locked .fish-card__art svg { filter: grayscale(1) brightness(1.15) opacity(0.45); }
+.fish-card.is-locked .fish-card__art svg, .fish-card.is-locked .fish-card__art .fish-photo { filter: grayscale(1) brightness(1.15) opacity(0.45); }
 .fish-card.is-locked .fish-card__name { color: var(--text-muted); }
 
 /* --- Badges (skjold) --- */

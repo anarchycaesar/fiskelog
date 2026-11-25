@@ -29,6 +29,11 @@ function yAt(curve, x) {
 }
 
 export function fishArt(fish, { decorative = true } = {}) {
+  // Rigtig illustration, hvis arten har en (img/fisk/<id>.jpg); ellers den tegnede SVG.
+  if (fish.photo) {
+    const alt = decorative ? 'alt="" aria-hidden="true"' : `alt="Illustration af ${esc(fish.name)}"`;
+    return `<img class="fish-photo" src="${esc(fish.photo)}" ${alt} loading="lazy" decoding="async" width="1000" height="500"/>`;
+  }
   const a = fish.art;
   const id = uid('fish');
   const t = a.depth;
